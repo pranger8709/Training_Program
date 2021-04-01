@@ -121,7 +121,7 @@ input{
 
 .main_body{
     display: table;
-    padding-top: 1%;
+    padding-top: 0%;
     width: 100%;
     height: 90%;
     text-align: center;
@@ -132,6 +132,14 @@ input{
     margin-left: auto;
     margin-right: auto;
     text-align: left;
+}
+
+.home_page_image{
+    max-width: 100%;
+}
+
+.account_buttons{
+    visibility: hidden;
 }
 
 #mainStyles{
@@ -192,92 +200,29 @@ input{
     color:white;
 }
 
+#menu{
+    position:absolute;
+    height:auto;
+    width:200px;
+    z-index: 9999;
+    display:none;
+    border: 1px solid black;
+    background-color:white;
+}
 
+.menu_item{
+    padding-top: 10px;
+    width: 100%;
+    height: 30px;
+}
+
+.menu_item:hover{
+    color: white;
+    background-color: #376EB3;
+    cursor: pointer;
+}
 
 @media all and (min-width: 800px){
-    html, body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    }
-
-    a{
-        font-family: Arial, Helvetica, sans-serif;
-        text-decoration: none;
-        color: black;
-    }
-
-    ul{
-        list-style-type: none;
-    }
-
-    h1, h2, h3{
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-
-    button{
-        height: 30px; 
-        width: 100px;
-        background-color: #376EB3;
-        border-color: #376EB3;
-        border-style: solid;
-        color: #FFFFFF;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    button:hover{
-        background-color: #69ABFF;
-        border-color: #69ABFF;
-        /* color: #FFFFFF; */
-    }
-
-    label{
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-
-    input{
-        border-radius: 5px;
-        border-color: #376EB3;
-        border-width: 1px;
-        border-style: solid;
-        box-shadow: none !important;
-    }
-
-    .header{
-        height: 10%;
-        width: 100%;
-        top: 0;
-        background-color: #42B5D6;
-        color: white;
-    }
-
-    .header_container{
-        position: relative;
-        display: inline-flex;
-        height: 100%;
-        width: 100%;
-        top: 0;
-    }
-
-    .menu_icon_container{
-        display: table-cell;
-        height: 100%;
-        width: 15%;
-        vertical-align: middle;
-        
-    }
-
-    .menu_icon{
-        padding-left: 15px;
-        cursor: pointer;
-        max-height: 40%;
-        max-width: 40%;
-        bottom: 25%;
-        position: absolute;
-    }
-
     .logo{
         margin-right:auto;
         margin-left:auto;
@@ -297,94 +242,13 @@ input{
         text-align: center;
         visibility: visible;
     }
+}
 
-    .colorBoxes{
-        display:inline-block; 
-        height: 100px; 
-        width: 100px;
-        border: 1px solid black;
-        position: relative;
-    }
-
-    .bottomBorder{
-        border-bottom: 1px solid darkgray;
-    }
-
-    .headers{
-        display: inline-block; 
-        width:fit-content;
-    }
-
-    .main_body{
-        display: table;
-        padding-top: 1%;
-        width: 100%;
-        height: 90%;
-        text-align: center;
-    }
-
-    .main_page_table{
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-    }
-
-    #mainStyles{
-        margin-top: 20px;
-        width: 1000px;
-        float: middle;
-        border: 1px solid rgb(218, 214, 214);
-        margin-left: 50px;
-        text-align: center;
-        list-style-position: inside;
-    }
-
-    #leftMenu{
-        height: 300px;
-        width: 150px;
-        border: 1px solid rgb(218, 214, 214);
-        margin-left: 20px;
-        margin-top: 20px;
-        padding-left: 10px;
-        float: left;
-    }
-
-    #mainContaner{
-        height: auto;
-        width: 100%;
-        position: absolute;
-        display: flex;
-        padding-bottom: 50px;
-    }
-
-    #invalid{
-        display:inline-block; 
-        background-color: #ec2b2b;
-        border:1px solid #ec2b2b; 
-        border-radius: 5px;
-        width:200px; 
-        font-weight: bolder; 
-        color:white;
-    }
-
-    #success{
-        display:inline-block; 
-        background-color: #4bec2b;
-        border:1px solid #4bec2b; 
-        border-radius: 5px;
-        width:200px; 
-        font-weight: bolder; 
-        color:white;
-    }
-
-    #warning{
-        display:inline-block; 
-        background-color: #FFF000;
-        border:1px solid #FFF000; 
-        border-radius: 5px;
-        width:200px; 
-        font-weight: bolder; 
-        color:white;
+@media all and (min-width: 300px){
+    .account_buttons{
+        height: 40%; 
+        width:30%;
+        font-size:20px;
+        visibility: visible;
     }
 }
