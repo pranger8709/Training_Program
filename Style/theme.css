@@ -206,7 +206,6 @@ input {
 }
 /* Modal Content/Box */
 .modal-content {
-  /* margin: 15% auto; */
   width: 100%;
   height: 100%;
 }
@@ -239,6 +238,10 @@ input {
 .register_page {
   height: 100%;
   display: none;
+}
+.account_forms {
+  margin: auto;
+  display: flex;
 }
 @media all and (min-width: 800px) {
   .logo {

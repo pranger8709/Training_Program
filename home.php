@@ -5,13 +5,7 @@
 
 
     $connection = new Dbcontroller();
-    $conn = $connection -> connect();
-
-    // $sql = 'SELECT first_name FROM users';
-    // foreach ($conn->query($sql) as $row) {
-    //     print $row['first_name'] . "\n";
-    // }
-    // $connection -> close_connection();
+    $conn = $connection -> get_connection();
 ?>
 
 <html>

@@ -4,7 +4,32 @@
     require_once("dbcontroller.php");
 
     $connection = new Dbcontroller();
-    $conn = $connection -> connect();
+    $conn = $connection -> get_connection();
+
+    if(isset($_POST["login_submit"])){
+        // $username = $_POST["username"];
+        // $password = $_POST["password"];
+        // echo $username;
+        $sql = "SELECT users.email, users.password FROM training.users WHERE users.email = '".$_POST["username"]."'";
+        // echo $sql;
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "email: " . $row["email"]. "<br>";
+                echo "password: " . $row["password"]. "<br>";
+            }
+        } else {
+        echo "0 results";
+        }
+        // if ($result = $mysqli -> query("SELECT * FROM Persons")) {
+        //     echo "Returned rows are: " . $result -> num_rows;
+        //     // Free result set
+        //     $result -> free_result();
+        // }
+        // echo $username." ".$password;
+    }
 ?>
 
 <html>
@@ -27,31 +52,31 @@
     </header>
     <div class="main_body">
         <!-- The Modal -->
-        <div id="myModal" class="modal">
+        <div id="modal" class="modal">
 
         <!-- Modal content -->
         <div class="modal-content">
         <span class="close" onclick="close_modal_login();">&times;</span>
             <div id="login_page" class="login_page">
-                <form id="login_form" method="POST" style="margin: auto;display: flex;">
+                <form id="login_form" method="POST" class="account_forms" autocomplete="off">
                 <table style="margin: auto;">
                     <tr>
                         <td><h1 style="color:white;">Login</h1></td>
                     </tr>
                     <tr>
-                        <td><input placeholder="Username" class="account_form_buttons"/></td>
+                        <td><input name="username" placeholder="Email" class="account_form_buttons"/></td>
                     </tr>
                     <tr>
-                        <td><input placeholder="Password" class="account_form_buttons"/></td>
+                        <td><input name="password" placeholder="Password" class="account_form_buttons"/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" class="submit_button account_form_buttons"/></td>
+                        <td><input type="submit" class="submit_button account_form_buttons" name="login_submit"/></td>
                     </tr>
                 </table>
                 </form>
             </div>
             <div id="register_page" class="login_page">
-                <form id="login_form" method="POST" style="margin: auto;display: flex;">
+                <form id="register_form" method="POST" class="account_forms" autocomplete="off">
                 <table style="margin: auto;">
                     <tr>
                         <td><h1 style="color:white;">Register</h1></td>
