@@ -10,8 +10,9 @@
         // $username = $_POST["username"];
         // $password = $_POST["password"];
         // echo $username;
-        $sql = "SELECT users.email, users.password FROM training.users WHERE users.email = '".$_POST["username"]."'";
-        // echo $sql;
+        // $sql = "SELECT users.email, users.password FROM users WHERE users.email = '".$_POST["username"]."'";
+        $sql = "SELECT * FROM training.users WHERE first_name='Tony'";
+        echo $sql."<br>";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
