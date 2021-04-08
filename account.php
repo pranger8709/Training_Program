@@ -1,31 +1,13 @@
 <!DOCTYPE html>
 
 <?php
-    include("dbcontroller.php");
+    require_once("dbcontroller.php");
+    require_once("session.php");
 
     $connection = new Dbcontroller();
+    // $session = new session();
     $conn = $connection -> get_connection();
-
-    if(isset($_POST["login_submit"])){
-        // $username = $_POST["username"];
-        // $password = $_POST["password"];
-        // echo $username;
-        $sql = "SELECT users.email, users.password FROM users WHERE users.email = '".$_POST["username"]."' and users.active = 1";
-        echo $sql."<br>";
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
-        // output data of each row
-            while($row = mysqli_fetch_assoc($result)) {
-                // echo "email: " . $row["email"]. "<br>";
-                // if($row['password'] == $_POST["password"]){
-                    echo "password: " . $row["password"]. "<br>";
-                // }
-                
-            }
-        } else {
-            echo "0 results";
-        }
-    }
+    session_start();
 ?>
 
 <html>
@@ -54,7 +36,7 @@
         <div class="modal-content">
         <span class="close" onclick="close_modal_login();">&times;</span>
             <div id="login_page" class="login_page">
-                <form id="login_form" method="POST" class="account_forms" autocomplete="off">
+                <form id="login_form" method="POST" class="account_forms" autocomplete="off" action="session.php">
                 <table style="margin: auto;">
                     <tr>
                         <td><h1 style="color:white;">Login</h1></td>
@@ -103,7 +85,13 @@
         </div>
         <div id="menu" onmouseleave="mouse_toggle_menu();">
             <a href="home.php"><div class="menu_item">Home</div></a>
-            <a href="account.php"><div class="menu_item">Login/Register</div></a>
+            <?php
+            if(!isset($_SESSION['uname'])){
+                echo "<a href=\"account.php\"><div class=\"menu_item\">Login/Register</div></a>";
+            }else{
+                echo "<a href=\"logout.php\" id=\"logout\"><div class=\"menu_item\" action=\"logout.php\">Logout</div></a>";
+            }
+            ?>
         </div>
         <p style="width:60%;margin-left:auto;margin-right:auto;text-align:left;">
             To create an account please click on "Register" to begin your journey, don't worry its quick and easy. Otherwise if you are a returning customer just login and start working out.

@@ -2,10 +2,15 @@
 
 <?php
     require_once("dbcontroller.php");
+    require_once("session.php");
 
 
     $connection = new Dbcontroller();
     $conn = $connection -> get_connection();
+    session_start();
+    // if($_SESSION['username']){
+    //     header('Location: home.php?sucess');
+    // }
 ?>
 
 <html>
@@ -29,7 +34,13 @@
     <div class="main_body">
         <div id="menu" onmouseleave="mouse_toggle_menu();">
             <a href="home.php"><div class="menu_item">Home</div></a>
-            <a href="account.php"><div class="menu_item">Login/Register</div></a>
+            <?php
+            if(!isset($_SESSION['uname'])){
+                echo "<a href=\"account.php\"><div class=\"menu_item\">Login/Register</div></a>";
+            }else{
+                echo "<a href=\"logout.php\" id=\"logout\"><div class=\"menu_item\" action=\"logout.php\">Logout</div></a>";
+            }
+            ?>
         </div>
         <h3>Welcome to the Workout Training Program!</h3>
         <table class="main_page_table">
