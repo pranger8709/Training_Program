@@ -13,17 +13,18 @@
         // $sql = "SELECT users.email, users.password FROM users WHERE users.email = '".$_POST["username"]."'";
         $sql = "SELECT * FROM training.users WHERE first_name='Tony'";
         echo $sql."<br>";
-        $result = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-        // output data of each row
-            while($row = mysqli_fetch_assoc($result)) {
-                echo "email: " . $row["email"]. "<br>";
-                echo "password: " . $row["password"]. "<br>";
-            }
-        } else {
-        echo "0 results";
-        }
+        // $result = mysqli_query($conn, $sql);
+        $result = $conn->query($sql);
+        printf("Select returned %d rows.\n", $result->num_rows);
+        // if (mysqli_num_rows($result) > 0) {
+        // // output data of each row
+        //     while($row = mysqli_fetch_assoc($result)) {
+        //         echo "email: " . $row["email"]. "<br>";
+        //         echo "password: " . $row["password"]. "<br>";
+        //     }
+        // } else {
+        // echo "0 results";
+        // }
         // if ($result = $mysqli -> query("SELECT * FROM Persons")) {
         //     echo "Returned rows are: " . $result -> num_rows;
         //     // Free result set
