@@ -9,8 +9,8 @@ class Dbcontroller{
     protected function connect(){
 
         //MySQL DB Connection $_SERVER['RDS_HOSTNAME'], $_SERVER['RDS_USERNAME'], $_SERVER['RDS_PASSWORD'], $_SERVER['RDS_DB_NAME'], $_SERVER['RDS_PORT']
-        $conn = new mysqli($_SERVER[$this->host], $_SERVER[$this->user], $_SERVER[$this->pwd], $_SERVER[$this->dbName], $_SERVER[3306]);
-        // $conn = mysqli_connect($this->host, $this->user, $this->pwd, $this->dbName, 3306);
+        // $conn = new mysqli($_SERVER[$this->host], $_SERVER[$this->user], $_SERVER[$this->pwd], $_SERVER[$this->dbName], $_SERVER[3306]);
+        $conn = mysqli_connect($this->host, $this->user, $this->pwd, $this->dbName, 3306);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
