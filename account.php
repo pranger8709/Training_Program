@@ -18,7 +18,7 @@
             // print $row['color'] . "\t";
             // print $row['calories'] . "\n";
         // }
-        // echo $sql."<br>";
+        echo $sql."<br>";
         $result = mysqli_query($conn, $sql);
         // $result = $conn->query($sql);
         // printf("Select returned %d rows.\n", $result->num_rows);
