@@ -10,33 +10,21 @@
         // $username = $_POST["username"];
         // $password = $_POST["password"];
         // echo $username;
-        // $sql = "SELECT users.email, users.password FROM users WHERE users.email = '".$_POST["username"]."'";
-        $sql = "SELECT * FROM training.users WHERE first_name='Tony'";
-        // $sql = 'SELECT name, color, calories FROM fruit ORDER BY name';
-        // foreach ($conn->query($sql) as $row) {
-            // print $row['first_name'] . "\t";
-            // print $row['color'] . "\t";
-            // print $row['calories'] . "\n";
-        // }
+        $sql = "SELECT users.email, users.password FROM users WHERE users.email = '".$_POST["username"]."' and users.active = 1";
         echo $sql."<br>";
         $result = mysqli_query($conn, $sql);
-        // $result = $conn->query($sql);
-        // printf("Select returned %d rows.\n", $result->num_rows);
         if (mysqli_num_rows($result) > 0) {
         // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
-                echo "email: " . $row["email"]. "<br>";
-                echo "password: " . $row["password"]. "<br>";
+                // echo "email: " . $row["email"]. "<br>";
+                // if($row['password'] == $_POST["password"]){
+                    echo "password: " . $row["password"]. "<br>";
+                // }
+                
             }
         } else {
-        echo "0 results";
+            echo "0 results";
         }
-        // if ($result = $mysqli -> query("SELECT * FROM Persons")) {
-        //     echo "Returned rows are: " . $result -> num_rows;
-        //     // Free result set
-        //     $result -> free_result();
-        // }
-        // echo $username." ".$password;
     }
 ?>
 
@@ -75,7 +63,7 @@
                         <td><input name="username" placeholder="Email" class="account_form_buttons"/></td>
                     </tr>
                     <tr>
-                        <td><input name="password" placeholder="Password" class="account_form_buttons"/></td>
+                        <td><input type="password" name="password" placeholder="Password" class="account_form_buttons"/></td>
                     </tr>
                     <tr>
                         <td><input type="submit" class="submit_button account_form_buttons" name="login_submit"/></td>
