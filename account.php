@@ -3,19 +3,19 @@
 <?php
     require_once("dbcontroller.php");
 
-    $connection = new Dbcontroller();
-    $conn = $connection -> get_connection();
+    // $connection = new Dbcontroller();
+    // $conn = $connection -> get_connection();
 
     if(isset($_POST["login_submit"])){
         // $username = $_POST["username"];
         // $password = $_POST["password"];
         // echo $username;
         // $sql = "SELECT users.email, users.password FROM users WHERE users.email = '".$_POST["username"]."'";
-        $sql = "SELECT * FROM training.users WHERE first_name='Tony'";
-        echo $sql."<br>";
+        // $sql = "SELECT * FROM training.users WHERE first_name='Tony'";
+        // echo $sql."<br>";
         // $result = mysqli_query($conn, $sql);
-        $result = $conn->query($sql);
-        printf("Select returned %d rows.\n", $result->num_rows);
+        // $result = $conn->query($sql);
+        // printf("Select returned %d rows.\n", $result->num_rows);
         // if (mysqli_num_rows($result) > 0) {
         // // output data of each row
         //     while($row = mysqli_fetch_assoc($result)) {
