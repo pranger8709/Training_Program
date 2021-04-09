@@ -38,7 +38,11 @@
             if(!isset($_SESSION['uname'])){
                 echo "<a href=\"account.php\"><div class=\"menu_item\">Login/Register</div></a>";
             }else{
-                echo "<a href=\"logout.php\" id=\"logout\"><div class=\"menu_item\" action=\"logout.php\">Logout</div></a>";
+                echo "<a><div class=\"menu_item\">Account Settings</div></a>";
+                echo "<a><div class=\"menu_item\">Generate Workout</div></a>";
+                echo "<a><div class=\"menu_item\">Exercise Stats</div></a>";
+                echo "<a href=\"logout.php\" id=\"logout\"><div class=\"menu_item\">Logout</div></a>";
+                
             }
             ?>
         </div>

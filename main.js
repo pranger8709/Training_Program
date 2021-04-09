@@ -29,3 +29,12 @@ function open_modal_register(){
 function close_modal_login(){
     document.getElementById("modal").style.display = "none";
 }
+
+function validate_passwords() {
+    var x = document.forms["register_form"]["password"].value;
+    var y = document.forms["register_form"]["confirm_password"].value;
+    if (x != y) {
+      alert("Password do not match");
+      return false;
+    }
+  }

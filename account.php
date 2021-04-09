@@ -48,13 +48,13 @@
                         <td><input type="password" name="password" placeholder="Password" class="account_form_buttons"/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" class="submit_button account_form_buttons" name="login_submit"/></td>
+                        <td><input type="submit" class="submit_button account_form_buttons" name="login_submit" value="Login"/></td>
                     </tr>
                 </table>
                 </form>
             </div>
             <div id="register_page" class="login_page">
-                <form id="register_form" method="POST" class="account_forms" autocomplete="off" action="create_account.php">
+                <form id="register_form" method="POST" class="account_forms" autocomplete="off" action="create_account.php" onsubmit="return validate_passwords();">
                 <table style="margin: auto;">
                     <tr>
                         <td><h1 style="color:white;">Register</h1></td>
@@ -75,7 +75,7 @@
                         <td><input type="password" placeholder="Confirm Password" class="account_form_buttons" name="confirm_password"/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" class="submit_button account_form_buttons" name="register_submit"/></td>
+                        <td><input type="submit" class="submit_button account_form_buttons" name="register_submit" value="Register"/></td>
                     </tr>
                 </table>
                 </form>
