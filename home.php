@@ -39,7 +39,6 @@
                 echo "<a href=\"generate_workout.php\"><div class=\"menu_item\">Generate Workout</div></a>";
                 echo "<a href=\"exercise_stats.php\"><div class=\"menu_item\">Exercise Stats</div></a>";
                 echo "<a href=\"logout.php\" id=\"logout\"><div class=\"menu_item\">Logout</div></a>";
-                
             }
             ?>
         </div>

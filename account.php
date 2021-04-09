@@ -60,19 +60,19 @@
                         <td><h1 style="color:white;">Register</h1></td>
                     </tr>
                     <tr>
-                        <td><input placeholder="First Name" class="account_form_buttons" name="first_name"/></td>
+                        <td><input placeholder="First Name" class="account_form_buttons" name="first_name" required/></td>
                     </tr>
                     <tr>
-                        <td><input placeholder="Last Name" class="account_form_buttons" name="last_name"/></td>
+                        <td><input placeholder="Last Name" class="account_form_buttons" name="last_name" required/></td>
                     </tr>
                     <tr>
-                        <td><input type="email" placeholder="Email" class="account_form_buttons" name="email"/></td>
+                        <td><input type="email" placeholder="Email" class="account_form_buttons" name="email" required/></td>
                     </tr>
                     <tr>
-                        <td><input type="password" placeholder="Password" class="account_form_buttons" name="password"/></td>
+                        <td><input type="password" placeholder="Password" class="account_form_buttons" name="password" required/></td>
                     </tr>
                     <tr>
-                        <td><input type="password" placeholder="Confirm Password" class="account_form_buttons" name="confirm_password"/></td>
+                        <td><input type="password" placeholder="Confirm Password" class="account_form_buttons" name="confirm_password" required/></td>
                     </tr>
                     <tr>
                         <td><input type="submit" class="submit_button account_form_buttons" name="register_submit" value="Register"/></td>
