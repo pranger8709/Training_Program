@@ -14,4 +14,10 @@ Database
   
 Service Layers
   Service layers are described in the service layer in the design folder
-  
+
+
+Main Issue
+  There are a lot of programs out there that can do what the core functionality of this product. However, the issue is they are some what burden some to use with all of the different subscriptions.
+
+Solution
+  Create a simple application that will provide a user with the ablitiy to track their fitness without a lot of subscriptions and provide them with the data they need.
