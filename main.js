@@ -37,4 +37,13 @@ function validate_passwords() {
       alert("Password do not match");
       return false;
     }
-  }
+}
+
+
+function update_successful() {
+    success = document.getElementById("update_success");
+    success.style.display = "inline-grid";
+    setTimeout(() => {
+        success.style.display = "none";
+    }, 5000);
+}

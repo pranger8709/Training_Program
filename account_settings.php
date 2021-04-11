@@ -8,6 +8,48 @@
     $connection = new Dbcontroller();
     $conn = $connection -> get_connection();
     session_start();
+
+    $sql = "SELECT * FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
+        // // echo $sql."<br>";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($result)) {
+        $first_name = $row["first_name"];
+        $last_name = $row["last_name"];
+        $email = $row["email"];
+    }
+
+    if(isset($_POST["submit_change"])){
+        if($_POST["first_name"] != "" && $_POST["first_name"] != $first_name){
+            $sql = "UPDATE users SET users.first_name = '".$_POST["first_name"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
+            $result = mysqli_query($conn, $sql);
+        }
+
+        if($_POST["last_name"] != "" && $_POST["last_name"] != $last_name){
+            $sql = "UPDATE users SET users.last_name = '".$_POST["last_name"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
+            $result = mysqli_query($conn, $sql);
+        }
+
+        if($_POST["email"] != "" && $_POST["email"] != $email){
+            $sql = "UPDATE users SET users.email = '".$_POST["email"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
+            $result = mysqli_query($conn, $sql);
+            $_SESSION["uname"] = $_POST["email"];
+        }
+
+        if($_POST["password"] != "" && $_POST["confirm_password"] != ""){
+            $sql = "UPDATE users SET users.password = '".$_POST["password"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
+            $result = mysqli_query($conn, $sql);
+        }
+
+
+        $sql = "SELECT * FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
+        // // echo $sql."<br>";
+        $result = mysqli_query($conn, $sql);
+        while($row = mysqli_fetch_assoc($result)) {
+            $first_name = $row["first_name"];
+            $last_name = $row["last_name"];
+            $email = $row["email"];
+        }
+    }
 ?>
 
 <html>
@@ -43,15 +85,53 @@
             }
             ?>
         </div>
-        <!-- <h3>Welcome to the Workout Training Program!</h3>
-        <table class="main_page_table">
-            <tr>
-                <td>&ensp;&ensp;This is the place for those self-motivated individuals to want to train themseleves to be the best version of you. Whether you are just starting out on your journey or if you already track your progress another way we can help either way. To get started is free and really quite simple, create an account using you email address. Once you are regisitered you are able to generate a custom workout, if you do not like the workout generated you can either generate a new one or customize the current workout generated.</td>
-            </tr>
-            <tr>
-                <td><img class="home_page_image" src="Style/Images/home-1.png"/></td>
-            </tr>
-        </table> -->
+        <div>
+            <form id="register_form" method="POST" class="account_forms" autocomplete="off" onsubmit="return validate_passwords();">
+                <table style="margin: auto;">
+                    <tr>
+                        <td><h1 style="color:white;">Register</h1></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php
+                                echo "<input placeholder=\"First Name\" class=\"account_form_buttons\" name=\"first_name\" value=$first_name required/>";
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php
+                                echo "<input placeholder=\"Last Name\" class=\"account_form_buttons\" name=\"last_name\" value=$last_name required/>";
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php
+                                echo "<input type=\"email\" placeholder=\"Email\" class=\"account_form_buttons\" name=\"email\" value=$email required/>";
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" placeholder="Password" class="account_form_buttons" name="password"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" placeholder="Confirm Password" class="account_form_buttons" name="confirm_password"/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="submit_change" type="submit" class="submit_button account_form_buttons" name="submit_change" value="Submit Changes" onclick="update_successful();"/>
+                        </form>
+                        <form style="display:inline-block;">
+                            <input type="submit" class="submit_button account_form_buttons" name="submit_deactivate" value="Deactivate"/>
+                        </form>
+                        </td>
+                    </tr>
+                    <tr id="update_success" class="success"><td>Update Successful</td></tr>
+                </table>
+                <!-- </form> -->
+            </div>
+        </div>
     </div>
 </body>
 </html>
