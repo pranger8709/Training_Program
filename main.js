@@ -43,7 +43,12 @@ function validate_passwords() {
 function update_successful() {
     success = document.getElementById("update_success");
     success.style.display = "inline-grid";
-    setTimeout(() => {
+
+    setTimeout(function() {
         success.style.display = "none";
     }, 5000);
+
+    // setTimeout(() => {
+    //     success.style.display = "none";
+    // }, 5000);
 }
