@@ -44,6 +44,17 @@ function validate_passwords() {
     }
 }
 
+function validate_change_passwords() {
+    var x = document.forms["register_form"]["password"].value;
+    var y = document.forms["register_form"]["confirm_password"].value;
+    if (x != y) {
+        success = document.getElementById("register_failed");
+        success.style.display = "inline-grid";
+        setTimeout(function(){ success.style.display = "none"; }, 5000);
+      return false;
+    }
+}
+
 
 function update_successful() {
     success = document.getElementById("update_success");

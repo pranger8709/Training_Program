@@ -20,6 +20,9 @@
 
     if(isset($_POST["submit_change"])){
         // echo '<script type="text/JavaScript"> update_successful();</script>';
+
+
+
         if($_POST["first_name"] != "" && $_POST["first_name"] != $first_name){
             $sql = "UPDATE users SET users.first_name = '".$_POST["first_name"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
             $result = mysqli_query($conn, $sql);
@@ -41,6 +44,8 @@
             $result = mysqli_query($conn, $sql);
         }
         // header('Location: account_settings.php');
+
+
         $sql = "SELECT * FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
         
         $result = mysqli_query($conn, $sql);
@@ -49,8 +54,10 @@
             $last_name = $row["last_name"];
             $email = $row["email"];
         }
+        if($_POST["password"] != "" && $_POST["confirm_password"] != "" && $_POST["password"] == $_POST["confirm_password"]){
+            echo "<script> window.onload = function() {update_successful();}; </script>";//after the script has run it will display the successful message
+        }
         
-        echo "<script> window.onload = function() {update_successful();}; </script>";//after the script has run it will display the successful message
     }
 
     if(isset($_POST["submit_deactivate"])){
@@ -96,7 +103,7 @@
             ?>
         </div>
         <div>
-            <form id="register_form" method="POST" class="account_forms" autocomplete="off" onsubmit="return validate_passwords();">
+            <form id="register_form" method="POST" class="account_forms" autocomplete="off" onsubmit="return validate_change_passwords();">
                 <table style="margin: auto;">
                     <tr>
                         <td><p>Change your account information or deacivate your account. Please know that once you deactivate your account your data will be lost.</p></td>
@@ -138,6 +145,7 @@
                         </td>
                     </tr>
                     <tr id="update_success" class="success"><td>Update Successful</td></tr>
+                    <tr id="register_failed" class="warning"><td>Passwords Do Not Match</td></tr>
                 </table>
                 <!-- </form> -->
             </div>
