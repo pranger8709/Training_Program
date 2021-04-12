@@ -34,7 +34,12 @@ function validate_passwords() {
     var x = document.forms["register_form"]["password"].value;
     var y = document.forms["register_form"]["confirm_password"].value;
     if (x != y) {
-      alert("Password do not match");
+        success = document.getElementById("register_failed");
+        document.getElementById("modal").style.display = "block";
+        document.getElementById("register_page").style.display = "flex";
+        document.getElementById("login_page").style.display = "none";
+        success.style.display = "inline-grid";
+        setTimeout(function(){ success.style.display = "none"; }, 5000);
       return false;
     }
 }

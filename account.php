@@ -37,6 +37,15 @@
             echo "<script> window.onload = function() {no_account_found();}; </script>";//after the script has run it will display the successful message
         }
     }
+
+    if(isset($_POST["register_submit"])){
+        $sql = "INSERT INTO training.users (users.first_name, users.last_name, users.email, users.password, users.date, users.active) VALUES ('".$_POST["first_name"]."','".$_POST["last_name"]."','".$_POST["email"]."','".$_POST["password"]."', NOW(), '1')";
+        echo $sql;
+        mysqli_query($conn, $sql);
+        session_start();
+        set_session($_POST["email"]);
+        header('Location: home.php');
+    }
 ?>
 
 <html>
@@ -85,7 +94,7 @@
                 </form>
             </div>
             <div id="register_page" class="login_page">
-                <form id="register_form" method="POST" class="account_forms" autocomplete="off" action="create_account.php" onsubmit="return validate_passwords();">
+                <form id="register_form" method="POST" class="account_forms" autocomplete="off" onsubmit="return validate_passwords();">
                 <table style="margin: auto;">
                     <tr>
                         <td><h1 style="color:white;">Register</h1></td>
@@ -108,6 +117,7 @@
                     <tr>
                         <td><input type="submit" class="submit_button account_form_buttons" name="register_submit" value="Register"/></td>
                     </tr>
+                    <tr id="register_failed" class="warning"><td>Passwords Do Not Match</td></tr>
                 </table>
                 </form>
             </div>
