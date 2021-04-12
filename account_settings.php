@@ -10,7 +10,7 @@
     session_start();
 
     $sql = "SELECT * FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
-        // // echo $sql."<br>";
+        
     $result = mysqli_query($conn, $sql);
     while($row = mysqli_fetch_assoc($result)) {
         $first_name = $row["first_name"];
@@ -19,6 +19,7 @@
     }
 
     if(isset($_POST["submit_change"])){
+        // echo '<script type="text/JavaScript"> update_successful();</script>';
         if($_POST["first_name"] != "" && $_POST["first_name"] != $first_name){
             $sql = "UPDATE users SET users.first_name = '".$_POST["first_name"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
             $result = mysqli_query($conn, $sql);
@@ -39,16 +40,25 @@
             $sql = "UPDATE users SET users.password = '".$_POST["password"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
             $result = mysqli_query($conn, $sql);
         }
-
-
+        // header('Location: account_settings.php');
         $sql = "SELECT * FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
-        // // echo $sql."<br>";
+        
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_assoc($result)) {
             $first_name = $row["first_name"];
             $last_name = $row["last_name"];
             $email = $row["email"];
         }
+        
+        echo "<script> window.onload = function() {update_successful();}; </script>";//after the script has run it will display the successful message
+    }
+
+    if(isset($_POST["submit_deactivate"])){
+        $sql = "UPDATE users SET users.active = 0 WHERE users.email = '".$_SESSION["uname"]."'";
+        $result = mysqli_query($conn, $sql);
+        unset($_SESSION['uname']);
+        session_destroy(); 
+        header('Location: home.php');
     }
 ?>
 
@@ -89,7 +99,7 @@
             <form id="register_form" method="POST" class="account_forms" autocomplete="off" onsubmit="return validate_passwords();">
                 <table style="margin: auto;">
                     <tr>
-                        <td><h1 style="color:white;">Register</h1></td>
+                        <td><p>Change your account information or deacivate your account. Please know that once you deactivate your account your data will be lost.</p></td>
                     </tr>
                     <tr>
                         <td>
@@ -120,9 +130,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="submit_change" type="submit" class="submit_button account_form_buttons" name="submit_change" value="Submit Changes" onclick="update_successful();"/>
+                            <input id="submit_change" type="submit" class="submit_button account_form_buttons" name="submit_change" value="Submit Changes"/>
                         </form>
-                        <form style="display:inline-block;">
+                        <form id="deacitvate_form" method="POST" style="display:inline-block;">
                             <input type="submit" class="submit_button account_form_buttons" name="submit_deactivate" value="Deactivate"/>
                         </form>
                         </td>

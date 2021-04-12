@@ -44,16 +44,13 @@ function update_successful() {
     success = document.getElementById("update_success");
     success.style.display = "inline-grid";
     setTimeout(function(){ success.style.display = "none"; }, 5000);
-    // remove_update_message();
-    // setTimeout(remove_update_message(), 5000);
-
-    // setTimeout(() => {
-    //     success.style.display = "none";
-    // }, 5000);
 }
 
-// setTimeout(function remove_update_message(){
-//     success = document.getElementById("update_success");
-//     success.style.display = "none";
-//     console.log("time");
-// }), 5000;
+function login_failed() {
+    success = document.getElementById("login_failed");
+    document.getElementById("modal").style.display = "block";
+    document.getElementById("login_page").style.display = "flex";
+    document.getElementById("register_page").style.display = "none";
+    success.style.display = "inline-grid";
+    setTimeout(function(){ success.style.display = "none"; }, 5000);
+}

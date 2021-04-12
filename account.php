@@ -8,6 +8,35 @@
     // $session = new session();
     $conn = $connection -> get_connection();
     session_start();
+
+    if(isset($_POST["login_submit"])){
+        $username = $_POST["username"];
+        // // $password = $_POST["password"];
+        // // echo $username;
+        $sql = "SELECT users.email, users.password FROM users WHERE users.email = '".$_POST["username"]."' and users.active = 1";
+        // // echo $sql."<br>";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+                // echo "email: " . $row["email"]. "<br>";
+                if($row['password'] == $_POST["password"]){
+                    // $session -> get_session($username);
+                    session_start();
+                    set_session($_POST["username"]);
+                    header('Location: home.php');
+                    // echo $_SESSION['username'];
+                    // echo "password: " . $row["password"]. "<br>";
+                }else{
+                    // header('Location: account.php');
+                    echo "<script> window.onload = function() {login_failed();}; </script>";//after the script has run it will display the successful message
+                }
+                
+            }
+        } else {
+            echo "0 results";
+        }
+    }
 ?>
 
 <html>
@@ -36,7 +65,7 @@
         <div class="modal-content">
         <span class="close" onclick="close_modal_login();">&times;</span>
             <div id="login_page" class="login_page">
-                <form id="login_form" method="POST" class="account_forms" autocomplete="off" action="session.php">
+                <form id="login_form" method="POST" class="account_forms" autocomplete="off">
                 <table style="margin: auto;">
                     <tr>
                         <td><h1 style="color:white;">Login</h1></td>
@@ -50,6 +79,7 @@
                     <tr>
                         <td><input type="submit" class="submit_button account_form_buttons" name="login_submit" value="Login"/></td>
                     </tr>
+                    <tr id="login_failed" class="invalid"><td>Login Failed - Incorrect username or password</td></tr>
                 </table>
                 </form>
             </div>
