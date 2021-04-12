@@ -34,7 +34,7 @@
                 
             }
         } else {
-            echo "0 results";
+            echo "<script> window.onload = function() {no_account_found();}; </script>";//after the script has run it will display the successful message
         }
     }
 ?>
@@ -80,6 +80,7 @@
                         <td><input type="submit" class="submit_button account_form_buttons" name="login_submit" value="Login"/></td>
                     </tr>
                     <tr id="login_failed" class="invalid"><td>Login Failed - Incorrect username or password</td></tr>
+                    <tr id="no_account" class="invalid"><td>No Account Found</td></tr>
                 </table>
                 </form>
             </div>

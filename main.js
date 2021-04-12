@@ -54,3 +54,12 @@ function login_failed() {
     success.style.display = "inline-grid";
     setTimeout(function(){ success.style.display = "none"; }, 5000);
 }
+
+function no_account_found() {
+    success = document.getElementById("no_account");
+    document.getElementById("modal").style.display = "block";
+    document.getElementById("login_page").style.display = "flex";
+    document.getElementById("register_page").style.display = "none";
+    success.style.display = "inline-grid";
+    setTimeout(function(){ success.style.display = "none"; }, 5000);
+}
