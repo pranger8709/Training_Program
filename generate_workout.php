@@ -8,6 +8,7 @@
     $connection = new Dbcontroller();
     $conn = $connection -> get_connection();
     session_start();
+
 ?>
 
 <html>
@@ -43,15 +44,54 @@
             }
             ?>
         </div>
-        <!-- <h3>Welcome to the Workout Training Program!</h3>
-        <table class="main_page_table">
+        <!-- <h3>Welcome to the Workout Training Program!</h3>-->
+        <table class="generate_page_table">
+            <colgroup>
+                <col span="1" style="width: 30%;">
+                <col span="1" style="width: 70%;">
+            </colgroup>
             <tr>
-                <td>&ensp;&ensp;This is the place for those self-motivated individuals to want to train themseleves to be the best version of you. Whether you are just starting out on your journey or if you already track your progress another way we can help either way. To get started is free and really quite simple, create an account using you email address. Once you are regisitered you are able to generate a custom workout, if you do not like the workout generated you can either generate a new one or customize the current workout generated.</td>
+                <td>
+                    To generate a workout follow these simple steps
+                    <ol style="text-align:left;">
+                        <li>Select an area or areas to excersise</li>
+                        <li>Click on generate</li>
+                        <li>Modify the workout or keep it the same</li>
+                        <li>Workout</li>
+                        <li>Fill out your workout results</li>
+                        <li>Save your workout</li>
+                    </ol>
+                </td>
+                <td style="height:100%;vertical-align:baseline;">
+                    <?php
+
+                        // $sql = "SELECT * FROM exercise";
+
+                        // $result = mysqli_query($conn, $sql);
+                        // foreach($result as $row) {
+                        //     print_r($row);
+                        //     // do something with each row
+                        // }
+  
+                    ?>
+                    <form id="generate_workout_form" method="POST" autocomplete="off">
+                        <label for="arms">Arms</label>
+                        <input id="arms" type="checkbox" value="true">
+                        <label for="chest">Chest</label>
+                        <input id="chest" type="checkbox" value="true">
+                        <label for="shoulder">Shoulder</label>
+                        <input id="shoulder" type="checkbox" value="true">
+                        <label for="leg">Legs</label>
+                        <input id="leg" type="checkbox" value="true">
+                        <label for="back">Back</label>
+                        <input id="back" type="checkbox" value="true">
+                        <label for="core">Core</label>
+                        <input id="core" type="checkbox" value="true">
+                        <input type="submit" id="generate_submit" name="generate_submit" value="Generate">
+                    </form>
+                </td>
             </tr>
-            <tr>
-                <td><img class="home_page_image" src="Style/Images/home-1.png"/></td>
-            </tr>
-        </table> -->
+        </table> 
     </div>
 </body>
 </html>

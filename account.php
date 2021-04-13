@@ -19,16 +19,11 @@
         if (mysqli_num_rows($result) > 0) {
         // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
-                // echo "email: " . $row["email"]. "<br>";
                 if($row['password'] == $_POST["password"]){
-                    // $session -> get_session($username);
                     session_start();
                     set_session($_POST["username"]);
                     header('Location: home.php');
-                    // echo $_SESSION['username'];
-                    // echo "password: " . $row["password"]. "<br>";
                 }else{
-                    // header('Location: account.php');
                     echo "<script> window.onload = function() {login_failed();}; </script>";//after the script has run it will display the successful message
                 }
                 

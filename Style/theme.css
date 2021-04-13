@@ -244,6 +244,10 @@ input {
   margin: auto;
   display: flex;
 }
+.generate_page_table {
+  width: 100%;
+  height: 100%;
+}
 @media all and (min-width: 800px) {
   .logo {
     margin-right: auto;
