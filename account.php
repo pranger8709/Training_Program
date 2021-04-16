@@ -35,7 +35,7 @@
 
     if(isset($_POST["register_submit"])){
         $sql = "INSERT INTO training.users (users.first_name, users.last_name, users.email, users.password, users.date, users.active) VALUES ('".$_POST["first_name"]."','".$_POST["last_name"]."','".$_POST["email"]."','".$_POST["password"]."', NOW(), '1')";
-        echo $sql;
+        // echo $sql;
         mysqli_query($conn, $sql);
         session_start();
         set_session($_POST["email"]);

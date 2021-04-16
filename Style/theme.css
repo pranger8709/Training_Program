@@ -248,6 +248,15 @@ input {
   width: 100%;
   height: 100%;
 }
+#submit_workout {
+  display: none;
+}
+.workout_form {
+  display: none;
+}
+#workout_table_header {
+  display: none;
+}
 @media all and (min-width: 800px) {
   .logo {
     margin-right: auto;

@@ -62,6 +62,12 @@ function update_successful() {
     setTimeout(function(){ success.style.display = "none"; }, 5000);
 }
 
+function update_workout_success() {
+    success = document.getElementById("update_success");
+    success.style.visibility = "visible";
+    setTimeout(function(){ success.style.visibility = "hidden"; }, 5000);
+}
+
 function login_failed() {
     success = document.getElementById("login_failed");
     document.getElementById("modal").style.display = "block";
@@ -78,4 +84,16 @@ function no_account_found() {
     document.getElementById("register_page").style.display = "none";
     success.style.display = "inline-grid";
     setTimeout(function(){ success.style.display = "none"; }, 5000);
+}
+
+function display_workout() {
+    document.getElementById("workout_form").style.display = "block";
+    document.getElementById("submit_workout").style.display = "block";
+    document.getElementById("workout_table_header").style.display = "contents";
+}
+
+function remove_workout() {
+    document.getElementById("workout_form").style.display = "none";
+    document.getElementById("submit_workout").style.display = "none";
+    document.getElementById("workout_table_header").style.display = "none";
 }

@@ -8,6 +8,29 @@
     $connection = new Dbcontroller();
     $conn = $connection -> get_connection();
     session_start();
+
+    $sql = "SELECT users.user_id FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($result)) {
+        $user_id = $row["user_id"];
+    }
+
+    $weight = array();
+    $date = array();
+    $sql = "SELECT exercise_stats.weight, exercise_stats.date FROM exercise_stats JOIN exercise ON exercise_stats.exercise_id = exercise.exercise_id JOIN users ON exercise_stats.user_id = users.user_id WHERE exercise.name = 'Trap Raise' AND users.user_id = ".$user_id;
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($result)){
+        $x = (int)$row["weight"];
+        
+        $y = date('Y-m-d',strtotime($row["date"]));;
+        $weight[] = $x;
+        $date[] = $y;
+    }
+
+    // print_r($weight);
+    print_r($date);
+
+    // echo "<script>make_graph(".$x.", ".$y.")</script>";
 ?>
 
 <html>
@@ -15,6 +38,7 @@
     <title>Exercise Stats</title>
     <link rel="stylesheet" type="text/css" href="Style/theme.css" />
     <script src="main.js"></script>
+    <script src="plotly-latest.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -43,6 +67,21 @@
             }
             ?>
         </div>
+        <div id="tester" style="width:600px;height:250px;"></div>
+        <script>
+            var weight = <?php echo json_encode($weight);?>;
+            var date = <?php echo json_encode($date);?>.map(Date);
+            date = date.map(Date);
+            console.log(date);
+            // // function make_graph(x, y){
+            // //     console.log(x);
+            // //     console.log(y);
+            TESTER = document.getElementById('tester');
+            Plotly.newPlot( TESTER, [{
+            x: date,
+            y: weight }], {
+            margin: { t: 0 } } );
+        </script>
         <!-- <h3>Welcome to the Workout Training Program!</h3>
         <table class="main_page_table">
             <tr>
