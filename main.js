@@ -4,9 +4,9 @@
 function toggle_menu(){
     var menu = document.getElementById("menu");
     if(menu.style.display == "block"){
-        $( "#menu" ).hide( "slow" );
+        $("#menu").hide("slow");
     }else{
-        $( "#menu" ).show( "slow" );
+        $("#menu").show("slow");
     }
     
 }
@@ -117,10 +117,19 @@ function show_exercises(){
     console.log(value);
 
     if(value == "arms"){
-        $( "#arms" ).show( "slow" );
-        $( "#chest" ).hide( "slow" );
+        $("#shoulder").hide("slow");
+        $("#chest").hide("slow");
+        $("#arms").show("slow");
+        $("#generate_submit").show("slow");
     }else if(value == "chest"){
-        $( "#chest" ).show( "slow" );
-        $( "#arms" ).hide( "slow" );
+        $("#arms").hide("slow");
+        $("#shoulder").hide("slow");
+        $("#chest").show("slow");
+        $("#generate_submit").show("slow");
+    }else if(value == "shoulder"){
+        $("#chest").hide("slow");
+        $("#arms").hide("slow");
+        $("#shoulder").show("slow");
+        $("#generate_submit").show("slow");
     }
 }

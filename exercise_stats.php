@@ -15,12 +15,14 @@
    
 
     if(isset($_POST["generate_results"])){
+
+        // echo $_POST["exercise"];
         $sql = "SELECT users.user_id FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_assoc($result)) {
             $user_id = $row["user_id"];
         }
-        $sql = "SELECT exercise_stats.weight, exercise_stats.date FROM exercise_stats JOIN exercise ON exercise_stats.exercise_id = exercise.exercise_id JOIN users ON exercise_stats.user_id = users.user_id WHERE exercise.name = 'Trap Raise' AND users.user_id = ".$user_id;
+        $sql = "SELECT exercise_stats.weight, exercise_stats.date FROM exercise_stats JOIN exercise ON exercise_stats.exercise_id = exercise.exercise_id JOIN users ON exercise_stats.user_id = users.user_id WHERE exercise.name = '".$_POST["exercise"][0]."' AND users.user_id = ".$user_id;
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_assoc($result)){
             $x = (int)$row["weight"];
@@ -28,13 +30,6 @@
             $weight[] = $x;
             $date[] = $y;
         }
-
-        // print_r($weight);
-        // print_r($date);
-        
-        // $simple_weight[] = echo json_encode($weight);
-        // echo "<script src=\"main.js\">create_visual_graph(".json_encode($weight).",".json_encode($date).");</script>";
-        // echo "<script>create_visual_graph();</script>";
     }
     
 ?>
@@ -45,7 +40,6 @@
     <link rel="stylesheet" type="text/css" href="Style/theme.css" />
     <script src="plotly-latest.min.js"></script>
     <script src="jquery.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
     <script src="main.js"></script>
     
 </head>
@@ -79,34 +73,46 @@
 
         <!-- <h3>Welcome to the Workout Training Program!</h3> -->
         <!-- <table class="main_page_table"> -->
-        <table class="generate_page_table">
-            <colgroup>
-                <col span="1" style="width: 100%;">
-                <!-- <col span="1" style="width: 70%;"> -->
-            </colgroup>
-            <tr>
+        <table style="display:inline-block;width:30%;">
+            <tr style="text-align:left">
                 <td>
-                <form style="height:100%" method="POST">
+                    <p>Finding out what your results are for each exercise is just a few button clicks away. Follow the instructions below and find out how you are doing.</p>
+                    <h3 style="text-align:center">Instructions</h3>
+                    <ol>
+                        <li>Select a area of the body</li>
+                        <li>Select an exercise</li>
+                        <li>Click on submit</li>
+                        <li>See your results</li>
+                        <li>Repeat!</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+        <table style="float:right;width:70%;height:100%;">
+            <!-- <colgroup>
+                <col span="1" style="width: 100%;">
+               col span="1" style="width: 70%;">
+            </colgroup> -->
+            <tr  style="height:15%;width:100%;">
+                <td style="height: 100%;position: relative;display: block;margin-left: auto;margin-right: auto;">
+                <form style="margin-top:0%;" method="POST">
+                <!-- <div> -->
                 <select id="area" name="area" onchange=show_exercises();>
                         <option value="">Select One</option>
                         <option value="arms">Arms</option>
                         <option value="chest">Chest</option>
                         <option value="shoulder">Shoulders</option>
                     </select>
+                <!-- </div> -->
                 <br>
                 
                 <?php
-                    
-                // $GLOBALS["area_type"] = $_POST["area"];
-                echo "<div id=\"select_exercise\">";
-                    // echo $GLOBALS["part_type"];
-                    // if($area == "arms"){
                     echo "<div id=\"arms\" style=\"display:none;\">";
                         $arm_sql = "SELECT exercise.name FROM exercise WHERE exercise.arm = 1 and exercise.active = 1"; 
                         $arm_result = mysqli_query($conn, $arm_sql );
                         while($row = mysqli_fetch_assoc($arm_result)) {
                             echo "<label id=\"arm_label\" for=\"".$row["name"]."\">".$row["name"]."</label>";
-                            echo "<input id=\"arm\" type=\"radio\" value=\"".$row["name"]."\" name=\"".$row["name"]."\">";
+                            echo "<input id=\"arm\" type=\"radio\" value=\"".$row["name"]."\" name=\"exercise[]\">";
                         }
                     echo "</div>";
                     echo "<div id=\"chest\" style=\"display:none;\">";
@@ -114,19 +120,25 @@
                         $chest_result = mysqli_query($conn, $chest_sql );
                         while($row = mysqli_fetch_assoc($chest_result)) {
                             echo "<label id=\"chest_label\" for=\"".$row["name"]."\">".$row["name"]."</label>";
-                            echo "<input id=\"chest_input\" type=\"radio\" value=\"".$row["name"]."\" name=\"".$row["name"]."\">";
+                            echo "<input id=\"chest_input\" type=\"radio\" value=\"".$row["name"]."\" name=\"exercise[]\">";
+                        }
+                    echo "</div>";
+                    echo "<div id=\"shoulder\" style=\"display:none;\">";
+                        $chest_sql = "SELECT exercise.name FROM exercise WHERE exercise.shoulder = 1 and exercise.active = 1"; 
+                        $chest_result = mysqli_query($conn, $chest_sql );
+                        while($row = mysqli_fetch_assoc($chest_result)) {
+                            echo "<label id=\"chest_label\" for=\"".$row["name"]."\">".$row["name"]."</label>";
+                            echo "<input id=\"chest_input\" type=\"radio\" value=\"".$row["name"]."\" name=\"exercise[]\">";
                         }
                     echo "</div>";
                     // }
-                echo "</div>";
                 ?>
-                
                     <input type="submit" id="generate_submit" name="generate_results" class="submit_button account_form_buttons">   
                 </form>
                 </td>
             </tr>
-            <tr>
-                <td id="graph" style="display:inline-block"></td>
+            <tr >
+                <td id="graph" style="height:85%;width:100%;"></td>
             </tr>
         </table>
         

@@ -100,8 +100,16 @@
             // echo "<br>".$exercise_id;
             // echo "<br>".$exercise_item[$i][0];
 
-            // Insert the exercise 
+            // Insert the exercise set 1
             $sql = "INSERT INTO exercise_stats (exercise_stats.user_id, exercise_stats.exercise_id, exercise_stats.weight, exercise_stats.date)VALUES (".$user_id.",".$exercise_id.",".$exercise_item[$i][1].",NOW())";
+            mysqli_query($conn, $sql);
+
+            // Insert the exercise set 2
+            $sql = "INSERT INTO exercise_stats (exercise_stats.user_id, exercise_stats.exercise_id, exercise_stats.weight, exercise_stats.date)VALUES (".$user_id.",".$exercise_id.",".$exercise_item[$i][2].",NOW())";
+            mysqli_query($conn, $sql);
+
+            // Insert the exercise set 3
+            $sql = "INSERT INTO exercise_stats (exercise_stats.user_id, exercise_stats.exercise_id, exercise_stats.weight, exercise_stats.date)VALUES (".$user_id.",".$exercise_id.",".$exercise_item[$i][3].",NOW())";
             mysqli_query($conn, $sql);
             
         }
@@ -181,7 +189,7 @@
                         <input id="back" type="checkbox" name="back" value="true">
                         <label for="core">Core</label>
                         <input id="core" type="checkbox" name="core" value="true"> -->
-                        <input type="submit" id="generate_submit" name="generate_submit" class="submit_button account_form_buttons" value="Generate">
+                        <input type="submit" id="generate_submit" name="generate_submit" class="submit_button account_form_buttons" style="display: inline-block;" value="Generate">
                     </form>
                     <br>
                     <p id="update_success" class="success" style="display: block;width: 100%;visibility: hidden;">Workout Recorded Successfully</p>
@@ -189,9 +197,9 @@
                     <form id="workout_form" method="POST" autocomplete="off">
                     <colgroup>
                         <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 28.33%;">
-                        <col span="1" style="width: 28.33%;">
-                        <col span="1" style="width: 28.33%;">
+                        <col span="1" style="width: 18.33%;">
+                        <col span="1" style="width: 18.33%;">
+                        <col span="1" style="width: 18.33%;">
                     </colgroup>
                         <tr id="workout_table_header">
                             <th>Exercise</th>
