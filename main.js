@@ -1,9 +1,12 @@
+// import {plotly} from "./plotly-latest.min.js";
+// import * as Plotly from 'plotly-latest.min.js';
+
 function toggle_menu(){
     var menu = document.getElementById("menu");
     if(menu.style.display == "block"){
-        menu.style.display = "none";
+        $( "#menu" ).hide( "slow" );
     }else{
-        menu.style.display = "block";
+        $( "#menu" ).show( "slow" );
     }
     
 }
@@ -96,4 +99,28 @@ function remove_workout() {
     document.getElementById("workout_form").style.display = "none";
     document.getElementById("submit_workout").style.display = "none";
     document.getElementById("workout_table_header").style.display = "none";
+}
+
+// function create_visual_graph(weight, date){
+//     // var weight = <?php echo json_encode($weight);?>;
+//     // var date = <?php echo json_encode($date);?>;
+//     console.log(date);
+//     console.log(weight);
+//     console.log("hello");
+//     // var data = [{x:date, y:weight, type:"line"}];
+//     // var layout = {showlegend: false,xaxis: {rangemode: 'tozero',autorange: true},yaxis: {rangemode: 'tozero',autorange: true}};
+//     // Plotly.newPlot('tester', data, layout);
+// }
+
+function show_exercises(){
+    var value = document.getElementById("area").value;
+    console.log(value);
+
+    if(value == "arms"){
+        $( "#arms" ).show( "slow" );
+        $( "#chest" ).hide( "slow" );
+    }else if(value == "chest"){
+        $( "#chest" ).show( "slow" );
+        $( "#arms" ).hide( "slow" );
+    }
 }

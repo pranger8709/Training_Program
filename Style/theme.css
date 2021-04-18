@@ -182,6 +182,7 @@ input {
   display: none;
   border: 1px solid black;
   background-color: white;
+  z-index: 3;
 }
 .menu_item {
   padding-top: 10px;

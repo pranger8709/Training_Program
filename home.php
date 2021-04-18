@@ -14,6 +14,7 @@
 <head>
     <title>Training</title>
     <link rel="stylesheet" type="text/css" href="Style/theme.css" />
+    <script src="jquery.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
