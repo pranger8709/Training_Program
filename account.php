@@ -13,7 +13,7 @@
         $username = $_POST["username"];
         // // $password = $_POST["password"];
         // // echo $username;
-        $sql = "SELECT users.email, users.password FROM users WHERE users.email = '".$_POST["username"]."' and users.active = 1";
+        $sql = "SELECT users.email, users.password, users.first_name FROM users WHERE users.email = '".$_POST["username"]."' and users.active = 1";
         // // echo $sql."<br>";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
@@ -22,6 +22,7 @@
                 if($row['password'] == $_POST["password"]){
                     session_start();
                     set_session($_POST["username"]);
+                    set_session_name($row['first_name']);
                     header('Location: home.php');
                 }else{
                     echo "<script> window.onload = function() {login_failed();}; </script>";//after the script has run it will display the successful message

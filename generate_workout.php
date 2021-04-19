@@ -9,7 +9,6 @@
     $conn = $connection -> get_connection();
     session_start();
     $exercise_list = array();
-    // echo "<script>window.onload = function() {remove_workout();};</script>";
     
     if(isset($_POST["generate_submit"])){
         $arms = $_POST["arms"] ?? FALSE;
@@ -134,6 +133,12 @@
         <div class="header_container">
             <div class="menu_icon_container">
                 <img class="menu_icon" src="Style/Images/menu.svg" onclick="toggle_menu();"/>
+                <?php
+                    $first_name = $_SESSION['first_name'] ?? null;
+                    if($first_name != null){
+                        echo "<div style=\"padding-left: 5%;\">Hello, ".$_SESSION['first_name']."</div>";
+                    } 
+                ?>
             </div>
             <h1 class="title">Generate Workout</h1>
             <div class="menu_icon_container">

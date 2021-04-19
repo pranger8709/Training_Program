@@ -19,13 +19,12 @@
     }
 
     if(isset($_POST["submit_change"])){
-        // echo '<script type="text/JavaScript"> update_successful();</script>';
-
-
 
         if($_POST["first_name"] != "" && $_POST["first_name"] != $first_name){
+            set_session_name($_POST["first_name"]);
             $sql = "UPDATE users SET users.first_name = '".$_POST["first_name"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
             $result = mysqli_query($conn, $sql);
+            
         }
 
         if($_POST["last_name"] != "" && $_POST["last_name"] != $last_name){
@@ -43,8 +42,6 @@
             $sql = "UPDATE users SET users.password = '".$_POST["password"]."' WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
             $result = mysqli_query($conn, $sql);
         }
-        // header('Location: account_settings.php');
-
 
         $sql = "SELECT * FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
         
@@ -81,6 +78,12 @@
         <div class="header_container">
             <div class="menu_icon_container">
                 <img class="menu_icon" src="Style/Images/menu.svg" onclick="toggle_menu();"/>
+                <?php
+                    $first_name = $_SESSION['first_name'] ?? null;
+                    if($first_name != null){
+                        echo "<div style=\"padding-left: 5%;\">Hello, ".$_SESSION['first_name']."</div>";
+                    } 
+                ?>
             </div>
             <h1 class="title">Account Settings</h1>
             <div class="menu_icon_container">
