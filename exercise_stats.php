@@ -140,7 +140,12 @@
             <tr >
                 <?php
                     $exercise = $_POST["exercise"][0] ?? null;
-                    echo "<td id=\"heading\" style=\"height:2%;width:100%;\"><h3>Exercise: ".$exercise."</h3></td>";
+                    if($exercise != null){
+                        echo "<td id=\"graph_heading\" style=\"height:2%;width:100%;\"><h3>Exercise: ".$exercise."</h3></td>";
+                    }else{
+                        echo "<td id=\"graph_heading\" style=\"height:2%;width:100%;\">Select an excercise to see the results</td>";
+                    }
+                   
                 ?>
             </tr>
             <tr >
