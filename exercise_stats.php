@@ -93,7 +93,7 @@
                 <col span="1" style="width: 100%;">
                col span="1" style="width: 70%;">
             </colgroup> -->
-            <tr  style="height:15%;width:100%;">
+            <tr style="height:15%;width:100%;">
                 <td style="height: 100%;position: relative;display: block;margin-left: auto;margin-right: auto;">
                 <form style="margin-top:0%;" method="POST">
                 <!-- <div> -->
@@ -138,33 +138,25 @@
                 </td>
             </tr>
             <tr >
-                <td id="graph" style="height:85%;width:100%;"></td>
+                <?php
+                    $exercise = $_POST["exercise"][0] ?? null;
+                    echo "<td id=\"heading\" style=\"height:2%;width:100%;\"><h3>Exercise: ".$exercise."</h3></td>";
+                ?>
+            </tr>
+            <tr >
+                <td id="graph" style="height:83%;width:100%;"></td>
             </tr>
         </table>
-        
-            <!-- <div id="tester" style="width:600px;height:250px;"></div> -->
- 
-            <!-- <tr>
-                <td>&ensp;&ensp;This is the place for those self-motivated individuals to want to train themseleves to be the best version of you. Whether you are just starting out on your journey or if you already track your progress another way we can help either way. To get started is free and really quite simple, create an account using you email address. Once you are regisitered you are able to generate a custom workout, if you do not like the workout generated you can either generate a new one or customize the current workout generated.</td>
-            </tr>
-            <tr>
-                <td><img class="home_page_image" src="Style/Images/home-1.png"/></td>
-            </tr> -->
-        <!-- </table> -->
     </div>
 </body>
 </html>
 
 
 <script>
-    // function create_visual_graph(){
+    //  This is where the magic happens for the graphing
         var weight = <?php echo json_encode($weight);?>;
         var date = <?php echo json_encode($date);?>;
-        // console.log(date);
-
-        var data = [{x:date, y:weight, type:"line"}];
+        var data = [{x:date, y:weight, type:"scatter"}];
         var layout = {showlegend: false,xaxis: {rangemode: 'tozero',autorange: true},yaxis: {rangemode: 'tozero',autorange: true}};
-        Plotly.newPlot('graph', data, layout);
-    // }
-                
+        Plotly.newPlot('graph', data, layout);   
 </script>
