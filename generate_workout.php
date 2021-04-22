@@ -42,29 +42,29 @@
             }
         }
 
-        // if($core){
-        //     if($chest || $arms || $shoulder){
-        //         $sql = $sql." OR exercise.core = 1";
-        //     }else{
-        //         $sql = "SELECT exercise.name FROM exercise WHERE exercise.shoulder = 1";
-        //     }
-        // }
+        if($core){
+            if($chest || $arms || $shoulder){
+                $sql = $sql." OR exercise.core = 1";
+            }else{
+                $sql = "SELECT exercise.name FROM exercise WHERE exercise.core = 1";
+            }
+        }
 
-        // if($back){
-        //     if($chest || $arms || $shoulder || $core){
-        //         $sql = $sql." OR exercise.core = 1";
-        //     }else{
-        //         $sql = "SELECT exercise.name FROM exercise WHERE exercise.shoulder = 1";
-        //     }
-        // }
+        if($back){
+            if($chest || $arms || $shoulder || $core){
+                $sql = $sql." OR exercise.back = 1";
+            }else{
+                $sql = "SELECT exercise.name FROM exercise WHERE exercise.back = 1";
+            }
+        }
 
-        // if($leg){
-        //     if($chest || $arms || $shoulder || $core || $back){
-        //         $sql = $sql." OR exercise.leg = 1";
-        //     }else{
-        //         $sql = "SELECT exercise.name FROM exercise WHERE exercise.shoulder = 1";
-        //     }
-        // }
+        if($leg){
+            if($chest || $arms || $shoulder || $core || $back){
+                $sql = $sql." OR exercise.leg = 1";
+            }else{
+                $sql = "SELECT exercise.name FROM exercise WHERE exercise.leg = 1";
+            }
+        }
         
         if(!$arms && !$chest && !$shoulder && !$leg && !$core && !$back){
             echo "<script>window.onload = function() {remove_workout();};</script>";
@@ -96,8 +96,6 @@
             while($row = mysqli_fetch_assoc($result)) {
                 $exercise_id = $row["exercise_id"];
             }
-            // echo "<br>".$exercise_id;
-            // echo "<br>".$exercise_item[$i][0];
 
             // Insert the exercise set 1
             $sql = "INSERT INTO exercise_stats (exercise_stats.user_id, exercise_stats.exercise_id, exercise_stats.weight, exercise_stats.date)VALUES (".$user_id.",".$exercise_id.",".$exercise_item[$i][1].",NOW())";
@@ -161,7 +159,6 @@
             }
             ?>
         </div>
-        <!-- <h3>Welcome to the Workout Training Program!</h3>-->
         <table class="generate_page_table">
             <colgroup>
                 <col span="1" style="width: 30%;">
@@ -178,7 +175,9 @@
                         <li>Fill out your workout results</li>
                         <li>Save your workout</li>
                     </ol>
-                    Want to see your progress? View your Exercise Stats here 
+                    <p style="text-align: left;">This will randomly choose up to 5 exercises randomly based on the area of the body you want to focus on. Don't be alarmed if you don't see an exercise you want to do. Feel free to generate as many workouts you want until you find the right one for you.</p>
+                    <br>
+                    <a href="exercise_stats.php">Want to see your progress? View your Exercise Stats here</a>
                 </td>
                 <td style="height:100%;vertical-align:baseline;">
                     <form id="generate_workout_form" method="POST" autocomplete="off">
@@ -188,12 +187,12 @@
                         <input id="chest" type="checkbox" name="chest" value="true">
                         <label for="shoulder">Shoulder</label>
                         <input id="shoulder" type="checkbox" name="shoulder" value="true">
-                        <!-- <label for="leg">Legs</label>
-                        <input id="leg" type="checkbox" name="leg" value="true"> -->
-                        <!-- <label for="back">Back</label>
+                        <label for="leg">Legs</label>
+                        <input id="leg" type="checkbox" name="leg" value="true">
+                        <label for="back">Back</label>
                         <input id="back" type="checkbox" name="back" value="true">
                         <label for="core">Core</label>
-                        <input id="core" type="checkbox" name="core" value="true"> -->
+                        <input id="core" type="checkbox" name="core" value="true">
                         <input type="submit" id="generate_submit" name="generate_submit" class="submit_button account_form_buttons" style="display: inline-block;" value="Generate">
                     </form>
                     <br>
@@ -216,48 +215,28 @@
                         $exercise_list = return_exercises();
                         $exercise_used_list = array();
 
+                        $j = 0;
+
                         foreach($exercise_list as $i=>$exercise){
-                            $y = get_new_index();
+                            // $y = get_new_index();
+                            $y = array_rand($exercise_list);
                             $exercise_list[$y] = $exercise_list[$y] ?? null;
                             echo "<tr>";
-                            if($exercise_list[$y] != ""){
-                                if($i <= 7){
-                                    echo "<td><input type=\"hidden\" name=\"exercise[".$i."][0]\" value=\"".$exercise_list[$y]."\">".$exercise_list[$y]."</td>";
-                                    echo "<td id=".$exercise_list[$y]."_set_1><input type=\"number\" name=\"exercise[".$i."][1]\" value=0></td>";
-                                    echo "<td id=".$exercise_list[$y]."_set_2><input type=\"number\" name=\"exercise[".$i."][2]\" value=0></td>";
-                                    echo "<td id=".$exercise_list[$y]."_set_3><input type=\"number\" name=\"exercise[".$i."][3]\" value=0></td>";
-                                }else{
-                                    break;
+                            if(!in_array($exercise_list[$y], $GLOBALS["exercise_used_list"])){
+                                if($i < 5){
+                                    echo "<td><input type=\"hidden\" name=\"exercise[".$y."][0]\" value=\"".$exercise_list[$y]."\">".$exercise_list[$y]."</td>";
+                                    echo "<td id=".$exercise_list[$y]."_set_1><input type=\"number\" name=\"exercise[".$y."][1]\" value=0></td>";
+                                    echo "<td id=".$exercise_list[$y]."_set_2><input type=\"number\" name=\"exercise[".$y."][2]\" value=0></td>";
+                                    echo "<td id=".$exercise_list[$y]."_set_3><input type=\"number\" name=\"exercise[".$y."][3]\" value=0></td>";
+                                    array_push($GLOBALS["exercise_used_list"], $exercise_list[$y]);
                                 }
-                            }else{
-                                $exercise_list[$y] ?? null;
                             }
                             echo "</tr>";
-                        }
-
-                        function get_new_index(){
-                            $y = array_rand($GLOBALS["exercise_list"]);
-                            // print_r($GLOBALS["exercise_used_list"]);
-                            if(in_array($y, $GLOBALS["exercise_used_list"])){
-                                $y = 0;
-                                get_new_index();
-                            }else{
-                                array_push($GLOBALS["exercise_used_list"], $y);
-                                return $y;
-                            }
                         }
                     ?>
                     <tr><td colspan="4" style="text-align: -webkit-center"><input id="submit_workout" type="submit" class="submit_button account_form_buttons" name="submit_workout" value="Submit Workout"/></td></tr>
                     </form>
                     </table>
-                    <?php
-                            // if(isset($_POST["submit_workout"])){
-                            //     echo "<script> window.onload = function() {update_successful();}; </script>";
-                            //     // echo "<script>window.onload = function() {remove_workout();};</script>";
-                            //     // echo "hello";
-                            // }
-                    ?>
-                    <!-- <tr id="update_success" class="success"><td>Workout Submitted</td></tr> -->
                 </td>
             </tr>
         </table> 

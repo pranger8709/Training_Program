@@ -119,17 +119,51 @@ function show_exercises(){
     if(value == "arms"){
         $("#shoulder").hide("slow");
         $("#chest").hide("slow");
+        $("#leg").hide("slow");
+        $("#back").hide("slow");
+        $("#core").hide("slow");
         $("#arms").show("slow");
         $("#generate_submit").show("slow");
     }else if(value == "chest"){
         $("#arms").hide("slow");
         $("#shoulder").hide("slow");
+        $("#leg").hide("slow");
+        $("#back").hide("slow");
+        $("#core").hide("slow");
         $("#chest").show("slow");
         $("#generate_submit").show("slow");
     }else if(value == "shoulder"){
         $("#chest").hide("slow");
         $("#arms").hide("slow");
+        $("#leg").hide("slow");
+        $("#back").hide("slow");
+        $("#core").hide("slow");
         $("#shoulder").show("slow");
+        $("#generate_submit").show("slow");
+    }else if(value == "leg"){
+        $("#chest").hide("slow");
+        $("#arms").hide("slow");
+        $("#shoulder").hide("slow");
+        $("#back").hide("slow");
+        $("#core").hide("slow");
+        $("#leg").show("slow");
+        $("#generate_submit").show("slow");
+    }else if(value == "back"){
+        $("#chest").hide("slow");
+        $("#arms").hide("slow");
+        $("#shoulder").hide("slow");
+        $("#leg").hide("slow");
+        $("#core").hide("slow");
+        $("#back").show("slow");
+        $("#generate_submit").show("slow");
+    }
+    else if(value == "core"){
+        $("#chest").hide("slow");
+        $("#arms").hide("slow");
+        $("#shoulder").hide("slow");
+        $("#leg").hide("slow");
+        $("#back").hide("slow");
+        $("#core").show("slow");
         $("#generate_submit").show("slow");
     }
 }

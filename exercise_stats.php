@@ -92,6 +92,12 @@
                         <li>See your results</li>
                         <li>Repeat!</li>
                     </ol>
+                    <p>Don't be alarmed if you do not see the progress that you want. Here are a few tips to get you back on track.</p>
+                    <ul style="list-style-type:circle;">
+                        <li>Plateau: Introduce some alternative exercises and alter your diet. It could very well be that your body isn't getting enough protien to build your muscle.</li>
+                        <li>Decline: This could be several things: diet, workout routine, or even an illness like the cold or flu. A lot of atheltes experience this at some point and it requires a bit of patience and dedication to see your trends start to increase.</li>
+                        <li>Increse: Don't stop what you are doing. Keep up the good work and keep with it.</li>
+                    </ul>
                 </td>
             </tr>
         </table>
@@ -109,6 +115,9 @@
                         <option value="arms">Arms</option>
                         <option value="chest">Chest</option>
                         <option value="shoulder">Shoulders</option>
+                        <option value="leg">Legs</option>
+                        <option value="back">Back</option>
+                        <option value="core">Core</option>
                     </select>
                 <!-- </div> -->
                 <br>
@@ -132,6 +141,30 @@
                     echo "</div>";
                     echo "<div id=\"shoulder\" style=\"display:none;\">";
                         $chest_sql = "SELECT exercise.name FROM exercise WHERE exercise.shoulder = 1 and exercise.active = 1"; 
+                        $chest_result = mysqli_query($conn, $chest_sql );
+                        while($row = mysqli_fetch_assoc($chest_result)) {
+                            echo "<label id=\"chest_label\" for=\"".$row["name"]."\">".$row["name"]."</label>";
+                            echo "<input id=\"chest_input\" type=\"radio\" value=\"".$row["name"]."\" name=\"exercise[]\">";
+                        }
+                    echo "</div>";
+                    echo "<div id=\"leg\" style=\"display:none;\">";
+                        $chest_sql = "SELECT exercise.name FROM exercise WHERE exercise.leg = 1 and exercise.active = 1"; 
+                        $chest_result = mysqli_query($conn, $chest_sql );
+                        while($row = mysqli_fetch_assoc($chest_result)) {
+                            echo "<label id=\"chest_label\" for=\"".$row["name"]."\">".$row["name"]."</label>";
+                            echo "<input id=\"chest_input\" type=\"radio\" value=\"".$row["name"]."\" name=\"exercise[]\">";
+                        }
+                    echo "</div>";
+                    echo "<div id=\"back\" style=\"display:none;\">";
+                        $chest_sql = "SELECT exercise.name FROM exercise WHERE exercise.back = 1 and exercise.active = 1"; 
+                        $chest_result = mysqli_query($conn, $chest_sql );
+                        while($row = mysqli_fetch_assoc($chest_result)) {
+                            echo "<label id=\"chest_label\" for=\"".$row["name"]."\">".$row["name"]."</label>";
+                            echo "<input id=\"chest_input\" type=\"radio\" value=\"".$row["name"]."\" name=\"exercise[]\">";
+                        }
+                    echo "</div>";
+                    echo "<div id=\"core\" style=\"display:none;\">";
+                        $chest_sql = "SELECT exercise.name FROM exercise WHERE exercise.core = 1 and exercise.active = 1"; 
                         $chest_result = mysqli_query($conn, $chest_sql );
                         while($row = mysqli_fetch_assoc($chest_result)) {
                             echo "<label id=\"chest_label\" for=\"".$row["name"]."\">".$row["name"]."</label>";
