@@ -95,6 +95,7 @@
                     <p>Don't be alarmed if you do not see the progress that you want. Here are a few tips to get you back on track.</p>
                     <ul style="list-style-type:circle;">
                         <li>Plateau: Introduce some alternative exercises and alter your diet. It could very well be that your body isn't getting enough protien to build your muscle.</li>
+                        <li>Scattered: If there isn't a pattern with your progress it very well could be that your workouts are not consistent. Stay consistent all the way through and you will start seeing patterens.</li>
                         <li>Decline: This could be several things: diet, workout routine, or even an illness like the cold or flu. A lot of atheltes experience this at some point and it requires a bit of patience and dedication to see your trends start to increase.</li>
                         <li>Increse: Don't stop what you are doing. Keep up the good work and keep with it.</li>
                     </ul>

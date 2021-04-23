@@ -51,7 +51,7 @@
             $last_name = $row["last_name"];
             $email = $row["email"];
         }
-        if($_POST["password"] != "" && $_POST["confirm_password"] != "" && $_POST["password"] == $_POST["confirm_password"]){
+        if($_POST["password"] == $_POST["confirm_password"]){
             echo "<script> window.onload = function() {update_successful();}; </script>";//after the script has run it will display the successful message
         }
         
@@ -110,7 +110,7 @@
             <form id="register_form" method="POST" class="account_forms" autocomplete="off" onsubmit="return validate_change_passwords();">
                 <table style="margin: auto;">
                     <tr>
-                        <td><p>Change your account information or deacivate your account. Please know that once you deactivate your account your data will be lost.</p></td>
+                        <td><p>You are able to update your account information here including your name, email and password.</p></td>
                     </tr>
                     <tr>
                         <td>
@@ -148,6 +148,7 @@
                         </form>
                         </td>
                     </tr>
+                    <tr><td>Please know that once you deactivate your account your data will be lost.</td></tr>
                     <tr id="update_success" class="success"><td>Update Successful</td></tr>
                     <tr id="register_failed" class="warning"><td>Passwords Do Not Match</td></tr>
                 </table>
