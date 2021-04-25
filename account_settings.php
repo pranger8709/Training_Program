@@ -152,7 +152,6 @@
                     <tr id="update_success" class="success"><td>Update Successful</td></tr>
                     <tr id="register_failed" class="warning"><td>Passwords Do Not Match</td></tr>
                 </table>
-                <!-- </form> -->
             </div>
         </div>
     </div>

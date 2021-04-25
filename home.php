@@ -23,6 +23,7 @@
             <div class="menu_icon_container">
                 <img class="menu_icon" src="Style/Images/menu.svg" onclick="toggle_menu();"/>
                 <?php
+                //If the user is logged in then it will display the first name of the user, otherwise nothing will happen
                     $first_name = $_SESSION['first_name'] ?? null;
                     if($first_name != null){
                         echo "<div style=\"padding-left: 5%;\">Hello, ".$_SESSION['first_name']."</div>";
@@ -39,6 +40,7 @@
         <div id="menu" onmouseleave="mouse_toggle_menu();">
             <a href="home.php"><div class="menu_item">Home</div></a>
             <?php
+            //This is checking if the username is not null and if not it will change Login/Register to Logout as well as dispaly the other 4 menu items
             if(!isset($_SESSION['uname'])){
                 echo "<a href=\"account.php\"><div class=\"menu_item\">Login/Register</div></a>";
             }else{
@@ -73,7 +75,6 @@
                     <p>We all start at some point. Whether it's your first time working out or if you are starting back up. Tracking your fitness progress is key to see the results you want.</p>
                     <p>Just remember you may not see results right away, and that it is expected. </p>
                 </td>
-                <!-- <td>&ensp;&ensp;This is the place for those self-motivated individuals to want to train themseleves to be the best version of you. Whether you are just starting out on your journey or if you already track your progress another way we can help either way. To get started is free and really quite simple, create an account using you email address. Once you are regisitered you are able to generate a custom workout, if you do not like the workout generated you can either generate a new one or customize the current workout generated.</td> -->
             </tr>
             <tr>
                 <td colspan="3"><img class="home_page_image" src="Style/Images/home-1.png"/></td>

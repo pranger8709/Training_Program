@@ -11,10 +11,7 @@
 
     if(isset($_POST["login_submit"])){
         $username = $_POST["username"];
-        // // $password = $_POST["password"];
-        // // echo $username;
         $sql = "SELECT users.email, users.password, users.first_name FROM users WHERE users.email = '".$_POST["username"]."' and users.active = 1";
-        // // echo $sql."<br>";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
         // output data of each row

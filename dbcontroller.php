@@ -7,6 +7,7 @@ class Dbcontroller{
     private $pwd = "Unicorn2009!";
 
     protected function connect(){
+        //Connecting to the MySQL DB using the mysqli
         $conn = mysqli_connect($this->host, $this->user, $this->pwd, "training", 3306);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -18,10 +19,12 @@ class Dbcontroller{
     }
 
     function get_connection(){
+        //returning the connection for the pages to use
         return $this -> connect();
     }
     
     function close_connection($conn){
+        //closing the connection
         $conn -> close();
     }
 }

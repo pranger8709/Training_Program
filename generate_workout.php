@@ -21,11 +21,12 @@
         $sql = "";//complete sql script
         $list = array();
 
-
+        //Start with sql to get the arms, if arms is selected.
         if($arms){
             $sql = "SELECT exercise.name FROM exercise WHERE exercise.arm = 1";
         }
 
+        //Start sql with chest options unless the above items are selected then it will append this selection
         if($chest){
             if($arms){
                 $sql = $sql." OR exercise.chest = 1";
@@ -34,6 +35,7 @@
             }
         }
 
+        //Start sql with shoulder options unless the above items are selected then it will append this selection
         if($shoulder){
             if($chest || $arms){
                 $sql = $sql." OR exercise.shoulder = 1";
@@ -42,6 +44,7 @@
             }
         }
 
+        //Start sql with core options unless the above items are selected then it will append this selection
         if($core){
             if($chest || $arms || $shoulder){
                 $sql = $sql." OR exercise.core = 1";
@@ -50,6 +53,7 @@
             }
         }
 
+        //Start sql with back options unless the above items are selected then it will append this selection
         if($back){
             if($chest || $arms || $shoulder || $core){
                 $sql = $sql." OR exercise.back = 1";
@@ -58,6 +62,7 @@
             }
         }
 
+        //Start sql with leg options unless the above items are selected then it will append this selection
         if($leg){
             if($chest || $arms || $shoulder || $core || $back){
                 $sql = $sql." OR exercise.leg = 1";
@@ -66,6 +71,7 @@
             }
         }
         
+        //If none of the items are selected it will remove the workout div otherwise it will display it
         if(!$arms && !$chest && !$shoulder && !$leg && !$core && !$back){
             echo "<script>window.onload = function() {remove_workout();};</script>";
         }else{
@@ -81,18 +87,22 @@
     }
 
     if(isset($_POST["submit_workout"])){
-        // print_r($_POST["exercise"]);
+        
+        //for the workouts it will contain a 2D array such as exercise["bench press"]["set_1"] and it will write to the DB for each one
         foreach($_POST["exercise"] as $i=>$exercise){
             $exercise_item = $_POST["exercise"];
             $sql = "SELECT users.user_id FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
             $result = mysqli_query($conn, $sql);
+
+            //Getting the user id
             while($row = mysqli_fetch_assoc($result)) {
                 $user_id = $row["user_id"];
             }
-            // echo "<br>".$user_id;
 
             $sql = "SELECT exercise.exercise_id FROM exercise WHERE exercise.name = '".$exercise_item[$i][0]."'";
             $result = mysqli_query($conn, $sql);
+
+            //Getting the exercise id
             while($row = mysqli_fetch_assoc($result)) {
                 $exercise_id = $row["exercise_id"];
             }
@@ -111,10 +121,10 @@
             
         }
         echo "<script> window.onload = function() {update_workout_success();}; </script>";
-        // echo "<script>window.onload = function() {remove_workout();};</script>";
     }
 
     function return_exercises(){
+        //returns the global exercise list for the generate workout to work
         return $GLOBALS["exercise_list"];
     }
 ?>
@@ -204,6 +214,7 @@
                         <col span="1" style="width: 18.33%;">
                         <col span="1" style="width: 18.33%;">
                         <col span="1" style="width: 18.33%;">
+                        <col span="1" style="width: 18.33%;">
                     </colgroup>
                         <tr id="workout_table_header">
                             <th>Exercise</th>
@@ -221,13 +232,14 @@
                             // $y = get_new_index();
                             $y = array_rand($exercise_list);
                             $exercise_list[$y] = $exercise_list[$y] ?? null;
-                            echo "<tr>";
+                            echo "<tr id=\"".$exercise_list[$y]."\">";
                             if(!in_array($exercise_list[$y], $GLOBALS["exercise_used_list"])){
                                 if($i < 5){
                                     echo "<td><input type=\"hidden\" name=\"exercise[".$y."][0]\" value=\"".$exercise_list[$y]."\">".$exercise_list[$y]."</td>";
-                                    echo "<td id=".$exercise_list[$y]."_set_1><input type=\"number\" name=\"exercise[".$y."][1]\" value=0></td>";
-                                    echo "<td id=".$exercise_list[$y]."_set_2><input type=\"number\" name=\"exercise[".$y."][2]\" value=0></td>";
-                                    echo "<td id=".$exercise_list[$y]."_set_3><input type=\"number\" name=\"exercise[".$y."][3]\" value=0></td>";
+                                    echo "<td id=\"".$exercise_list[$y]."_set_1\"><input type=\"number\" name=\"exercise[".$y."][1]\" value=0></td>";
+                                    echo "<td id=\"".$exercise_list[$y]."_set_2\"><input type=\"number\" name=\"exercise[".$y."][2]\" value=0></td>";
+                                    echo "<td id=".$exercise_list[$y]."_set_3\"><input type=\"number\" name=\"exercise[".$y."][3]\" value=0></td>";
+                                    echo "<td id=\"".$exercise_list[$y]."_remove\"><div id=\"".$exercise_list[$y]."_remove_button\" class=\"remove_button\" onclick=\"remove_exercise('".strval($exercise_list[$y])."');\">Remove</div></td>";
                                     array_push($GLOBALS["exercise_used_list"], $exercise_list[$y]);
                                 }
                             }

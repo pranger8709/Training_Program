@@ -11,17 +11,18 @@
 
     $weight = array();
     $date = array();
-    // $area_type = null;
    
 
     if(isset($_POST["generate_results"])){
 
-        // echo $_POST["exercise"];
+        // Getting the user id TODO: Make this a universal function so that this is not repeated
         $sql = "SELECT users.user_id FROM users WHERE users.email = '".$_SESSION["uname"]."' and users.active = 1";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_assoc($result)) {
             $user_id = $row["user_id"];
         }
+
+        //Getting the data back for dates and weights into the x and y, for graphing
         $sql = "SELECT exercise_stats.weight, exercise_stats.date FROM exercise_stats JOIN exercise ON exercise_stats.exercise_id = exercise.exercise_id JOIN users ON exercise_stats.user_id = users.user_id WHERE exercise.name = '".$_POST["exercise"][0]."' AND users.user_id = ".$user_id;
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_assoc($result)){
@@ -103,15 +104,11 @@
             </tr>
         </table>
         <table style="float:right;width:70%;height:100%;">
-            <!-- <colgroup>
-                <col span="1" style="width: 100%;">
-               col span="1" style="width: 70%;">
-            </colgroup> -->
             <tr style="height:15%;width:100%;">
                 <td style="height: 100%;position: relative;display: block;margin-left: auto;margin-right: auto;">
                 <form style="margin-top:0%;" method="POST">
-                <!-- <div> -->
                 <select id="area" name="area" onchange=show_exercises();>
+                        <!--Here we are displaying the opions to select the body area to display the correct workouts later-->
                         <option value="">Select One</option>
                         <option value="arms">Arms</option>
                         <option value="chest">Chest</option>
@@ -120,10 +117,10 @@
                         <option value="back">Back</option>
                         <option value="core">Core</option>
                     </select>
-                <!-- </div> -->
                 <br>
                 
                 <?php
+                    // Each div will have display none until the user selects the body area then it will display and hide the others
                     echo "<div id=\"arms\" style=\"display:none;\">";
                         $arm_sql = "SELECT exercise.name FROM exercise WHERE exercise.arm = 1 and exercise.active = 1"; 
                         $arm_result = mysqli_query($conn, $arm_sql );
@@ -172,7 +169,6 @@
                             echo "<input id=\"chest_input\" type=\"radio\" value=\"".$row["name"]."\" name=\"exercise[]\">";
                         }
                     echo "</div>";
-                    // }
                 ?>
                     <input type="submit" id="generate_submit" name="generate_results" class="submit_button account_form_buttons">   
                 </form>
