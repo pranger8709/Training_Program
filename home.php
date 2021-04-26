@@ -61,7 +61,7 @@
             <tr>
                 <td class="home_table_data">
                     <h3>What?</h3>
-                    <p>You might be wondering, "What is this?"" and "What can it do for me?" Both are great questions. This program is designed for those who don't want to spend mony on a fitness tracker that may not meet your needs.</p>
+                    <p>You might be wondering, "What is this?" and "What can it do for me?" Both are great questions. This program is designed for those who don't want to spend mony on a fitness tracker that may not meet your needs.</p>
                     <p>Most applications that are out there try to sell you things you may not need. To be effective with your fitness you need to be motivated and the best way to do that is to track your progress as you go.</p>
                 </td>
                 <td class="home_table_data">
