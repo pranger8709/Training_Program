@@ -37,6 +37,7 @@
         mysqli_query($conn, $sql);
         session_start();
         set_session($_POST["email"]);
+        set_session_name($_POST["first_name"]);
         header('Location: home.php');
     }
 ?>
