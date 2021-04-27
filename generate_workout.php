@@ -7,6 +7,8 @@
 
     $connection = new Dbcontroller();
     $conn = $connection -> get_connection();
+    header("Cache-Control: no cache");
+    session_cache_limiter("private_no_expire");
     session_start();
     $exercise_list = array();
     
