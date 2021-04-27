@@ -63,6 +63,14 @@ input {
   width: 15%;
   vertical-align: middle;
 }
+.logo_icon_container {
+  display: inline-block;
+  height: 100%;
+  width: 25%;
+  vertical-align: middle;
+  position: absolute;
+  right: 0;
+}
 .menu_icon {
   padding-left: 15px;
   cursor: pointer;
@@ -80,6 +88,7 @@ input {
   position: absolute;
   right: 0;
   visibility: hidden;
+  padding-right: 15px;
 }
 .title {
   display: table-cell;

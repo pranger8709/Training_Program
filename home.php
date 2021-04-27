@@ -31,10 +31,10 @@
                 ?>
             </div>
             <h1 class="title">Home</h1>
-            <div class="menu_icon_container">
+            <div class="logo_icon_container">
                 <img class="logo" src="Style/Images/logo.png"/>
             </div>
-        </div>
+        </div> 
     </header>
     <div class="main_body">
         <div id="menu" onmouseleave="mouse_toggle_menu();">
