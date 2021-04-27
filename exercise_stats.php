@@ -7,11 +7,14 @@
 
     $connection = new Dbcontroller();
     $conn = $connection -> get_connection();
+    header("Cache-Control: no cache");
+    session_cache_limiter("private_no_expire");
     session_start();
 
     $weight = array();
     $date = array();
-   
+    
+    
 
     if(isset($_POST["generate_results"])){
 
@@ -31,7 +34,13 @@
             $weight[] = $x;
             $date[] = $y;
         }
+    }else{
+        // unset($_REQUEST);  
+        // unset($_POST);
     }
+    
+    // unset($_POST["generate_results"]);
+
     
 ?>
 

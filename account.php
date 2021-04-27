@@ -7,6 +7,8 @@
     $connection = new Dbcontroller();
     // $session = new session();
     $conn = $connection -> get_connection();
+    header("Cache-Control: no cache");
+    session_cache_limiter("private_no_expire");
     session_start();
 
     if(isset($_POST["login_submit"])){
