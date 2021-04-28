@@ -151,9 +151,9 @@
                     } 
                 ?>
             </div>
-            <h1 class="title">Generate Workout</h1>
+            <h2 class="title">Generate Workout</h2>
             <div class="logo_icon_container">
-                <img class="logo" src="Style/Images/logo.png"/>
+            <a href="home.php"><img class="logo" src="Style/Images/logo.png"/></a>
             </div>
         </div> 
     </header>
