@@ -3,7 +3,7 @@
 <?php
     require_once("dbcontroller.php");
     require_once("session.php");
-
+    
 
     $connection = new Dbcontroller();
     $conn = $connection -> get_connection();
@@ -81,5 +81,8 @@
             </tr>
         </table>
     </div>
+    <?php
+        include("footer.php");
+    ?>
 </body>
 </html>
