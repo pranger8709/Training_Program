@@ -31,10 +31,12 @@ button {
 footer {
   display: none;
 }
+footer a {
+  color: #FFFFFF;
+}
 button:hover {
   background-color: #69ABFF;
   border-color: #69ABFF;
-  /* color: #FFFFFF; */
 }
 label {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
