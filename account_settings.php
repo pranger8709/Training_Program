@@ -70,8 +70,8 @@
 <head>
     <title>Account Settings</title>
     <link rel="stylesheet" type="text/css" href="Style/theme.css" />
-    <script src="jquery.js"></script>
-    <script src="main.js"></script>
+    <script src="JavaScript/jquery.min.js"></script>
+    <script src="JavaScript/main.js"></script>
 </head>
 <body>
     <header class="header">
