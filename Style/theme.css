@@ -29,12 +29,7 @@ button {
   border-radius: 5px;
 }
 footer {
-  height: 10%;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  background-color: #42B5D6;
-  color: white;
+  display: none;
 }
 button:hover {
   background-color: #69ABFF;
@@ -329,6 +324,15 @@ input {
     padding-top: 5px;
     text-align: center;
     visibility: visible;
+  }
+  footer {
+    display: block;
+    height: 10%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #42B5D6;
+    color: white;
   }
 }
 @media all and (min-width: 300px) {
